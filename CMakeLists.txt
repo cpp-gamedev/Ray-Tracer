@@ -35,11 +35,3 @@ add_library(libMaths STATIC EXCLUDE_FROM_ALL "${MATH_SOURCES}")
 target_include_directories(libMaths PRIVATE ${MATHS_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC ${MATHS_DIR})
 target_link_libraries(${PROJECT_NAME} PUBLIC ${MATHS_LIB})
-
-#add SFML
-set(SFML_DIR "external/SFML-2.5.1")
-file(GLOB_RECURSE SFML_SOURCES "${SFML_DIR}/*.cpp" "${SFML_DIR}/*.hpp")
-add_library(SFML STATIC EXCLUDE_FROM_ALL "${SFML_SOURCES}")
-target_include_directories(SFML PRIVATE ${SFML_DIR})
-target_include_directories(${PROJECT_NAME} PUBLIC ${SFML_DIR})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${SFML_LIB})
