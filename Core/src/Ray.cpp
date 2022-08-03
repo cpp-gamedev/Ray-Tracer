@@ -7,12 +7,12 @@ lm::vec3 Ray::lookAt(float& t) const
 	return origin + t * direction;
 }
 
-lm::vec3 Ray::getOrigin() const
+lm::vec3 Ray::get_origin() const
 {
 	return origin;
 }
 
-lm::vec3 Ray::getDirection() const
+lm::vec3 Ray::get_direction() const
 {
 	return direction;
 }
