@@ -7,7 +7,7 @@ class PPM
 {
 public:
 
-	PPM(const int& height, const int& width);
+	PPM(const int height, const int width);
 
 	struct RGB
 	{
