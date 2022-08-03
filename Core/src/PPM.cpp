@@ -1,16 +1,11 @@
 #include "../include/PPM.h"
 
-PPM::PPM(const int& height, const int& width)
+PPM::PPM(const int height, const int width)
 {
 	set_height(height);
 	set_width(width);
 
 	create_image();
-}
-
-PPM::~PPM()
-{
-	delete_image();
 }
 
 void PPM::set_width(const int& width)
@@ -54,8 +49,6 @@ void PPM::save(const std::string& name) const
 			for (int i = 0; i < height; i++)
 				for (int j = 0; j < width; j++)
 					output.write(reinterpret_cast<char*>(&image[i][j]), sizeof(RGB));
-
-		output.close();
 	}
 }
 
