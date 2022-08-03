@@ -1,12 +1,6 @@
 #include "../include/Ray.h"
 
-Ray::Ray() {}
-
-Ray::Ray(const lm::vec3& origin, const lm::vec3& direction)
-{
-	this->origin = origin;
-	this->direction = direction;
-}
+Ray::Ray(const lm::vec3& origin, const lm::vec3& direction) : origin(this->origin), direction(this->direction) {}
 
 lm::vec3 Ray::lookAt(float& t) const
 {
