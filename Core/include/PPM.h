@@ -8,11 +8,10 @@ class PPM
 public:
 
 	PPM(const int& height, const int& width);
-	~PPM();
 
 	struct RGB
 	{
-		lm::vec3 color;
+		lm::vec3 color = {0, 0, 0};
 	};
 
 	void set_width(const int& width);
