@@ -1,16 +1,11 @@
 #include "../include/PPM.h"
 
-PPM::PPM(int height, int width)
+PPM::PPM(const int height, const int width)
 {
 	set_height(height);
 	set_width(width);
 
 	create_image();
-}
-
-PPM::~PPM()
-{
-	delete_image();
 }
 
 void PPM::set_width(const int& width)
@@ -44,18 +39,16 @@ void PPM::save(const std::string& name) const
 			for (int i = 0; i < height; i++)
 				for (int j = 0; j < width; j++)
 				{
-					output << (int)image[i][j].r << ' ';
-					output << (int)image[i][j].g << ' ';
-					output << (int)image[i][j].b << '\n';
+					output << static_cast<int>(image[i][j].color.X()) << ' ';
+					output << static_cast<int>(image[i][j].color.Y()) << ' ';
+					output << static_cast<int>(image[i][j].color.Z()) << '\n';
 				}
 		}
 
 		else
 			for (int i = 0; i < height; i++)
 				for (int j = 0; j < width; j++)
-					output.write((char*)&image[i][j], sizeof(RGB));
-
-		output.close();
+					output.write(reinterpret_cast<char*>(&image[i][j]), sizeof(RGB));
 	}
 }
 
@@ -85,13 +78,13 @@ void PPM::read(const std::string& name)
 				for (int j = 0; j < width; j++)
 				{
 					input >> box;
-					image[i][j].r = box;
+					image[i][j].color.X() = box;
 
 					input >> box;
-					image[i][j].g = box;
+					image[i][j].color.Y() = box;
 
 					input >> box;
-					image[i][j].b = box;
+					image[i][j].color.Z() = box;
 				}
 		}
 
@@ -99,7 +92,7 @@ void PPM::read(const std::string& name)
 		{
 			for (int i = 0; i < height; i++)
 				for (int j = 0; j < width; j++)
-					input.read((char*)&image[i][j], sizeof(RGB));
+					input.read(reinterpret_cast<char*>(&image[i][j]), sizeof(RGB));
 		}
 
 		input.close();
@@ -129,10 +122,6 @@ void PPM::create_image()
 		image[i] = new RGB[width];
 
 		for (int j = 0; j < width; j++)
-		{
-			image[i][j].r = 255;
-			image[i][j].g = 255;
-			image[i][j].b = 255;
-		}
+			image[i][j].color = { 255, 255, 255 };
 	}
 }

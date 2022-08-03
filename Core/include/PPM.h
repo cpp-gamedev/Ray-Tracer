@@ -1,21 +1,17 @@
 #pragma once
 #include <fstream>
 #include <iostream>
-#include <cmath>
+#include "Vec3/Vec3.h"
 
 class PPM
 {
 public:
 
-	PPM();
-	PPM(int height, int width);
-	~PPM();
+	PPM(const int height, const int width);
 
 	struct RGB
 	{
-		unsigned char r;
-		unsigned char g;
-		unsigned char b;
+		lm::vec3 color = {0, 0, 0};
 	};
 
 	void set_width(const int& width);
